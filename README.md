@@ -89,7 +89,7 @@ The presentation covers:
 
 - **Voice AI**: VAPI platform for natural phone conversations
 - **AI Analysis**: OpenAI GPT-4 for intelligent conversation analysis
-- **Predictive ML**: Custom hospitalization risk prediction model
+- **Predictive ML**: Custom hospitalization risk prediction model (see installation instructions)
 - **Data Storage**: MongoDB for secure patient data management
 - **Dashboard**: Modern web interface with real-time analytics
 - **Integration**: RESTful APIs for healthcare system connectivity
@@ -159,12 +159,30 @@ The presentation covers:
    OPENAI_API_KEY=your_openai_api_key
    ```
 
-4. **Run the complete pipeline**
+4. **Download the Hospitalization Prediction Model**
+   
+   The hospitalization prediction model file (`prevention_model/hospitalization_model.pkl`) is not included in this repository due to size limitations. You have two options:
+   
+   **Option A: Download from Release Assets**
+   - Go to the [Releases](https://github.com/yourusername/ruthie-ai/releases) page
+   - Download `hospitalization_model.pkl` from the latest release
+   - Place it in the `prevention_model/` directory
+   
+   **Option B: Train Your Own Model**
+   - Use the Jupyter notebook in `prevention_model/model.ipynb`
+   - Follow the training instructions to create your own model
+   - Save the trained model as `prevention_model/hospitalization_model.pkl`
+   
+   **Option C: Run Without Prediction Model**
+   - The system will work without the model, but hospitalization risk prediction will be disabled
+   - All other features (calls, analysis, dashboard) will function normally
+
+5. **Run the complete pipeline**
    ```bash
    python complete_pipeline.py
    ```
 
-5. **Launch the dashboard**
+6. **Launch the dashboard**
    ```bash
    cd dashboard
    python app.py
@@ -269,17 +287,6 @@ cd dashboard && python app.py
 - **Troubleshooting**: Common issues and solutions
 - **Community**: Active development community and forums
 
-## 🤝 **Contributing**
-
-We welcome contributions! Please see our contributing guidelines for:
-- Code contributions
-- Bug reports
-- Feature requests
-- Documentation improvements
-
-## 📄 **License**
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## 🏆 **Acknowledgments**
 

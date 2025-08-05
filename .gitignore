@@ -68,10 +68,14 @@ logs/
 # Jupyter Notebook
 .ipynb_checkpoints
 
-# Model files (if large)
-*.pkl
-*.h5
-*.model
+# Model files (excluded due to size limitations)
+# These files should be downloaded separately or trained locally
+prevention_model/hospitalization_model.pkl
+prevention_model/*.pkl
+prevention_model/*.h5
+prevention_model/*.model
+prevention_model/*.joblib
+prevention_model/*.pickle
 
 # Temporary files
 tmp/
@@ -105,6 +109,9 @@ dmypy.json
 # Project-specific exclusions
 # Large model files
 prevention_model/hospitalization_model.pkl
+prevention_model/*.pkl
+prevention_model/*.h5
+prevention_model/*.model
 
 # Trash/debug files
 trash/
