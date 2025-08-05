@@ -188,5 +188,4 @@ Temporary Items
 .apdisk 
 
 # Large files (excluded due to size limitations)
-Presentation.pdf
-*.pdf 
+# Note: Presentation.pdf is included as it's under GitHub's size limit 
