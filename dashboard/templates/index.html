@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruthie AI Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-heart-pulse me-2"></i>
+                Ruthie AI Dashboard
+            </a>
+            <div class="navbar-nav ms-auto">
+                <span class="navbar-text">
+                    <i class="fas fa-user-md me-1"></i>
+                    Care Team
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container-fluid mt-4">
+        <!-- Dashboard Stats -->
+        <div class="row mb-4" id="dashboard-stats">
+            <div class="col-md-2">
+                <div class="card stat-card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="stat-icon bg-primary">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="ms-3">
+                                <h6 class="card-title mb-0">Total Patients</h6>
+                                <h3 class="mb-0" id="total-patients">-</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card stat-card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="stat-icon bg-success">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="ms-3">
+                                <h6 class="card-title mb-0">Total Visits</h6>
+                                <h3 class="mb-0" id="total-visits">-</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card stat-card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="stat-icon bg-info">
+                                <i class="fas fa-calendar-week"></i>
+                            </div>
+                            <div class="ms-3">
+                                <h6 class="card-title mb-0">Recent Visits</h6>
+                                <h3 class="mb-0" id="recent-visits">-</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card stat-card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="stat-icon bg-warning">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="ms-3">
+                                <h6 class="card-title mb-0">Need Follow-up</h6>
+                                <h3 class="mb-0" id="needs-followup">-</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card stat-card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="stat-icon bg-danger">
+                                <i class="fas fa-exclamation-circle"></i>
+                            </div>
+                            <div class="ms-3">
+                                <h6 class="card-title mb-0">Patients at High Risk</h6>
+                                <h3 class="mb-0" id="high-risk-patients">1</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Patients Section -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-users me-2"></i>
+                            Patients
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row" id="patients-container">
+                            <!-- Patients will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Patient Visits Modal -->
+    <div class="modal fade" id="visitsModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-phone me-2"></i>
+                        Patient Visits
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Analytics Charts Section -->
+                    <div id="analytics-section" style="display: none;">
+                        <h5 class="mb-4"><i class="fas fa-chart-line me-2"></i>Visit Analytics</h5>
+                        
+                        <div class="row">
+                            <!-- Mood Trends Chart -->
+                            <div class="col-md-6 mb-4">
+                                <div class="card chart-card">
+                                    <div class="card-header">
+                                        <h6 class="mb-0"><i class="fas fa-smile me-2"></i>Mood Trends</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="chart-container">
+                                            <canvas id="moodChart"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Pain Level Chart -->
+                            <div class="col-md-6 mb-4">
+                                <div class="card chart-card">
+                                    <div class="card-header">
+                                        <h6 class="mb-0"><i class="fas fa-thermometer-half me-2"></i>Pain Level Trends</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="chart-container">
+                                            <canvas id="painChart"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Medication Adherence Chart -->
+                            <div class="col-md-6 mb-4">
+                                <div class="card chart-card">
+                                    <div class="card-header">
+                                        <h6 class="mb-0"><i class="fas fa-pills me-2"></i>Medication Adherence</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="chart-container">
+                                            <canvas id="medicationChart"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Food Intake Chart -->
+                            <div class="col-md-6 mb-4">
+                                <div class="card chart-card">
+                                    <div class="card-header">
+                                        <h6 class="mb-0"><i class="fas fa-utensils me-2"></i>Food Intake Patterns</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="chart-container">
+                                            <canvas id="foodChart"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Sleep Quality Chart -->
+                            <div class="col-md-6 mb-4">
+                                <div class="card chart-card">
+                                    <div class="card-header">
+                                        <h6 class="mb-0"><i class="fas fa-bed me-2"></i>Sleep Quality Trends</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="chart-container">
+                                            <canvas id="sleepChart"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Hospitalization Risk Chart -->
+                            <div class="col-md-6 mb-4">
+                                <div class="card chart-card">
+                                    <div class="card-header">
+                                        <h6 class="mb-0"><i class="fas fa-hospital me-2"></i>Hospitalization Risk Trends</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="chart-container">
+                                            <canvas id="hospitalizationChart"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Summary Statistics -->
+                            <div class="col-md-6 mb-4">
+                                <div class="card chart-card">
+                                    <div class="card-header">
+                                        <h6 class="mb-0"><i class="fas fa-calculator me-2"></i>Summary Statistics</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="summary-stats">
+                                            <!-- Summary stats will be populated here -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <hr class="my-4">
+                    </div>
+                    
+                    <div id="visits-container">
+                        <!-- Visits will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Patient Profile Modal -->
+    <div class="modal fade" id="profileModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-user me-2"></i>
+                        Patient Profile
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="profile-container">
+                        <!-- Patient profile will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loading" class="loading-overlay" style="display: none;">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html> 

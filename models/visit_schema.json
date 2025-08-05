@@ -1,0 +1,87 @@
+{
+    "bsonType": "object",
+    "required": ["patientId","caregiver","timestamp","transcript","summary"],
+    "properties": {
+      "patientId": {
+        "bsonType": "objectId",
+        "description": "Reference to the patient (_id from patients collection)"
+      },
+      "caregiver": {
+        "bsonType": "string",
+        "description": "Caregiver for the patient"
+      },
+      "timestamp": {
+        "bsonType": "date",
+        "description": "When the call started"
+      },
+      "transcript": {
+        "bsonType": "string",
+        "description": "Full speech-to-text of the conversation"
+      },
+      "summary": {
+        "bsonType": "object",
+        "required": [
+          "medicationsTaken",
+          "painReport",
+          "mood",
+          "memoryIssuesNoted",
+          "foodIntake",
+          "sleepQuality",
+          "ableToLeaveHouse",
+          "smallTalkTopic",
+          "markers"
+        ],
+        "properties": {
+          "medicationsTaken": {
+            "bsonType": "bool",
+            "description": "Did they take their meds?"
+          },
+          "painReport": {
+            "bsonType": "int",
+            "minimum": 0,
+            "maximum": 10,
+            "description": "Self-reported pain on 0–10 scale"
+          },
+          "mood": {
+            "bsonType": "string",
+            "description": "E.g. cheerful, tired, worried"
+          },
+          "memoryIssuesNoted": {
+            "bsonType": "bool",
+            "description": "Did we hear confusion or memory lapses?"
+          },
+          "foodIntake": {
+            "bsonType": "string",
+            "description": "E.g. normal, low, none"
+          },
+          "sleepQuality": {
+            "bsonType": "string",
+            "description": "E.g. normal, low, none"
+          },
+          "ableToLeaveHouse": {
+            "bsonType": "bool",
+            "description": "Did they leave the house?"
+          },
+          "smallTalkTopic": {
+            "bsonType": "string",
+            "description": "Which hobby or fun fact we chatted about"
+          },
+          "markers": {
+            "bsonType": "object",
+            "required": ["needsFollowUp","appointmentMissed"],
+            "properties": {
+              "needsFollowUp": {
+                "bsonType": "bool",
+                "description": "Flag for care team follow-up"
+              },
+              "appointmentMissed": {
+                "bsonType": "bool",
+                "description": "Did they miss an upcoming appointment?"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
