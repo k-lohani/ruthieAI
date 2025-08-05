@@ -73,18 +73,6 @@ Caregivers receive comprehensive reports with specific recommendations for each 
 - **Time Savings**: Automated routine check-ins
 - **Better Communication**: Structured data for family updates
 
-## 📊 **Presentation & Demo**
-
-For a comprehensive overview of Ruthie AI, including detailed technical architecture, demo walkthrough, and business case analysis, please refer to our [Presentation Deck](Presentation.pdf).
-
-The presentation covers:
-- **Problem Statement**: Current challenges in elderly care
-- **Solution Overview**: How Ruthie AI addresses these challenges
-- **Technical Architecture**: System design and integration details
-- **Demo Walkthrough**: Live demonstration of the system in action
-- **Business Impact**: ROI analysis and market opportunity
-- **Future Roadmap**: Planned enhancements and expansion
-
 ## 🛠️ **Technology Stack**
 
 - **Voice AI**: VAPI platform for natural phone conversations
