@@ -2,7 +2,7 @@
 
 **AI-powered care companion that makes personalized wellness check-in calls to elderly patients, analyzes conversations for health insights, and provides predictive healthcare monitoring through an interactive dashboard.**
 
-![Ruthie AI Dashboard](images/dashboard%20Home%20Page.png)
+![Ruthie AI Dashboard](images/dashboard_Home_Page.png)
 
 ## 🎯 **The Problem**
 
@@ -40,7 +40,7 @@ Ruthie AI is an intelligent voice AI agent that transforms elderly care through:
 ### 1. **Personalized Care Call**
 Ruthie initiates a natural phone conversation with each patient, asking about their health, mood, and daily activities while engaging in meaningful small talk about their interests.
 
-![AI Voice Call Details and Analysis](images/AI%20Voice%20Call%20Details%20anda%20Analysis.png)
+![AI Voice Call Details and Analysis](images/AI_Voice_Call_Details_and_Analysis.png)
 
 ### 2. **Intelligent Analysis**
 Every conversation is analyzed using OpenAI GPT-4 to extract health insights, identify risk factors, and generate care recommendations.
@@ -51,7 +51,7 @@ Our machine learning model predicts hospitalization risk based on conversation d
 ### 4. **Actionable Insights**
 Caregivers receive comprehensive reports with specific recommendations for each patient through an intuitive dashboard.
 
-![Patient Summary Statistics](images/Patient%20Summary%20Statistics.png)
+![Patient Summary Statistics](images/Patient_Summary_Statistics.png)
 
 ## 📈 **Business Impact**
 
@@ -121,7 +121,7 @@ The presentation covers:
 - Detailed visit history with AI insights
 - Risk assessment and alert system
 
-![Patient Summary Readings](images/Ptient%20Summary%20Readings.png)
+![Patient Summary Readings](images/Patient_Summary_Readings.png)
 
 ## 🚀 **Getting Started**
 
